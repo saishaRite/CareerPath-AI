@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101522">
+  <title>CareerPath AI — Your next move, mapped.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">C</span><span>careerpath<span class="brand-ai">.ai</span></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-link active" data-view="overview"><span>◫</span> Overview</button>
+    <button class="nav-link" data-view="analyzer"><span>⌕</span> Career analyzer</button>
+    <button class="nav-link" data-view="roadmap"><span>▤</span> Learning roadmap</button>
+    <button class="nav-link" data-view="projects"><span>◇</span> Project studio</button>
+    <button class="nav-link" data-view="interview"><span>◎</span> Mock interview</button>
+    <button class="nav-link" data-view="applications"><span>▣</span> Applications</button>
+    <div class="sidebar-bottom"><div class="status-dot"></div><span id="mode-label">Checking AI mode…</span><div class="avatar" id="avatar">S</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">STUDENT CAREER INTELLIGENCE</div><h1 id="page-title">Your career overview</h1></div><div class="top-actions"><span class="date-pill" id="today"></span><button class="profile-pill" id="profile-name">Student <span class="avatar small">S</span></button></div></header>
+    <div id="toast" class="toast" role="status"></div>
+    <section class="view active" id="view-overview">
+      <div class="welcome panel"><div><div class="eyebrow light">YOUR NEXT MOVE STARTS HERE</div><h2>Build a career with<br><em>direction.</em></h2><p>Turn your current skills into a practical plan for the role you want.</p><button class="btn btn-light" data-go="analyzer">Run career analysis <span>→</span></button></div><div class="welcome-orbit"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">CP<span>AI</span></div><div class="orbit-tag tag-one">SKILLS</div><div class="orbit-tag tag-two">GROWTH</div><div class="orbit-tag tag-three">CAREER</div></div></div>
+      <div class="metric-grid">
+        <article class="metric-card"><div class="metric-top">Career fit score <span>↗</span></div><div class="metric-value" id="metric-score">—<small>/100</small></div><div class="metric-foot" id="metric-score-foot">Run your first analysis</div></article>
+        <article class="metric-card"><div class="metric-top">Skills identified <span>⌘</span></div><div class="metric-value" id="metric-skills">0</div><div class="metric-foot">From your resume and profile</div></article>
+        <article class="metric-card"><div class="metric-top">Learning tasks done <span>✓</span></div><div class="metric-value" id="metric-tasks">0<small>/0</small></div><div class="metric-foot">Keep your momentum</div></article>
+        <article class="metric-card"><div class="metric-top">Applications tracked <span>▣</span></div><div class="metric-value" id="metric-apps">0</div><div class="metric-foot">Your job search pipeline</div></article>
+      </div>
+      <div class="content-grid"><article class="card"><div class="section-head"><div><div class="eyebrow">CAREER DIRECTION</div><h3 id="overview-role">No target role yet</h3></div><span class="chip">LATEST ANALYSIS</span></div><p id="overview-summary" class="muted">Upload your resume and add a job description to get a grounded view of your skill gaps.</p><div id="overview-skills" class="skill-row"></div></article><article class="card next-card"><div class="eyebrow">NEXT ACTION</div><h3>Make progress measurable.</h3><p class="muted">Generate a focused roadmap, complete tasks, and update your profile as your skills improve.</p><button class="btn btn-primary" data-go="roadmap">View learning plan →</button></article></div>
+    </section>
+    <section class="view" id="view-analyzer">
+      <div class="page-intro"><div><div class="eyebrow">01 / CAREER INTELLIGENCE</div><h2>Know your gaps.<br><em>Close them.</em></h2><p>Compare your profile with an actual job description. Your score is a skill-match indicator, not a hiring prediction.</p></div><div class="step-bubble">01</div></div>
+      <div class="card form-card"><div class="form-grid"><label>Your name<input id="student-name" placeholder="e.g. Alex Morgan" value="Student"></label><label>Target role<input id="target-role" placeholder="e.g. Software Engineer Intern" value="Software Engineer Intern"></label></div>
+        <label>Job description <span class="required">Required · paste a real role description</span><textarea id="job-description" rows="7" placeholder="Paste the responsibilities, qualifications and skills from a real job posting. Include technical requirements for a more useful analysis."></textarea></label>
+        <label>Resume PDF <span class="optional">Optional · max 5 MB · text-based PDF</span><div class="upload-box"><input type="file" id="resume-file" accept=".pdf,application/pdf"><div><strong>Drop your resume here or browse</strong><small id="file-label">PDF only. Scanned image-only PDFs are not supported.</small></div><span class="upload-icon">↑</span></div></label>
+        <label>Skills you already have <span class="optional">Optional · comma separated</span><input id="manual-skills" placeholder="Python, SQL, Git, React, Data Structures"></label>
+        <div class="form-actions"><span class="muted tiny">Your resume text is processed for analysis and not saved as a file.</span><button id="analyze-btn" class="btn btn-primary">Analyze my career fit <span>→</span></button></div>
+      </div>
+      <div id="analysis-results" class="hidden"></div>
+    </section>
+    <section class="view" id="view-roadmap"><div class="page-intro"><div><div class="eyebrow">02 / EXECUTION PLAN</div><h2>A plan you can<br><em>actually follow.</em></h2><p>Turn skill gaps into weekly work. Mark tasks complete to update your progress.</p></div><button class="btn btn-primary" id="generate-roadmap">Generate roadmap →</button></div><div id="roadmap-content" class="empty-state">Run a career analysis first, then generate your personalized roadmap.</div></section>
+    <section class="view" id="view-projects"><div class="page-intro"><div><div class="eyebrow">03 / PROOF OF SKILL</div><h2>Build proof,<br><em>not just claims.</em></h2><p>Portfolio projects should demonstrate the skills your target role asks for.</p></div><button class="btn btn-primary" id="load-projects">Suggest projects →</button></div><div id="projects-content" class="project-grid"><div class="empty-state">Run a career analysis to unlock project recommendations.</div></div></section>
+    <section class="view" id="view-interview"><div class="page-intro"><div><div class="eyebrow">04 / INTERVIEW PRACTICE</div><h2>Practice with<br><em>purpose.</em></h2><p>Answer a role-specific question and receive structured feedback against a consistent rubric.</p></div><div class="step-bubble">04</div></div><div class="card interview-card"><div class="eyebrow">PRACTICE QUESTION</div><div id="question-text" class="question">Explain the difference between an array and a linked list. When would you choose one over the other?</div><button class="text-btn" id="new-question">Use another question ↗</button><label>Your answer<textarea id="interview-answer" rows="6" placeholder="Write your answer. Be specific and include an example..."></textarea></label><button class="btn btn-primary" id="evaluate-answer">Evaluate my answer →</button><div id="interview-feedback"></div></div></section>
+    <section class="view" id="view-applications"><div class="page-intro"><div><div class="eyebrow">05 / OPPORTUNITY PIPELINE</div><h2>Keep every opportunity<br><em>in view.</em></h2><p>Track applications and outcomes. Use the history to review where your search is progressing.</p></div></div><div class="card"><form id="application-form" class="application-form"><input id="company" placeholder="Company" required><input id="position" placeholder="Position" required><select id="application-status"><option>Applied</option><option>Saved</option><option>Interview</option><option>Offer</option><option>Rejected</option></select><input id="applied-date" type="date"><button class="btn btn-primary">Add application +</button></form><div id="applications-list" class="application-list"></div></div></section>
+    <footer>CAREERPATH AI <span>·</span> A student career intelligence prototype</footer>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body></html>
